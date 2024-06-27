@@ -4,30 +4,24 @@ public class Main {
     private static final String FILE_PATH = "genealogy_tree.ser";
 
     public static void main(String[] args) {
-        Person john = new Person("John");
-        Person mary = new Person("Mary");
-        Person peter = new Person("Peter");
+        Person john = new Person("Джон");
+        Person mary = new Person("Мэри");
+        Person peter = new Person("Питер");
 
         john.addChild(mary);
         john.addChild(peter);
 
         GenealogyTree tree = new GenealogyTree(john);
 
-        // Создаем экземпляр GenealogyFileManager
-        GenealogyFileManager fileManager = new GenealogyFileManager(FILE_PATH);
+        List<Person> johnChildren = tree.getChildrenOfPerson("Джон");
+        System.out.println("Дети Джона:");
+        for (Person child : johnChildren) {
+            System.out.println(child.getName());
+        }
 
-        // Сохраняем генеалогическое дерево в файл
-        fileManager.saveGenealogyTree(tree);
-
-        // Загружаем генеалогическое дерево из файла
-        GenealogyTree loadedTree = fileManager.loadGenealogyTree();
-
-        if (loadedTree != null) {
-            List<Person> johnChildren = loadedTree.getChildrenOfPerson("John");
-            System.out.println("Children of John (loaded from file):");
-            for (Person child : johnChildren) {
-                System.out.println(child.getName());
-            }
+        System.out.println("Все люди в генеалогическом древе:");
+        for (Person person : tree) {
+            System.out.println(person.getName());
         }
     }
 }
