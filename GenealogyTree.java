@@ -1,31 +1,32 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-class GenealogyTree implements Iterable<Person> {
-    private Person root;
+public class GenealogyTree<T extends Person> implements Iterable<T>, Serializable {
+    private T root;
 
-    public GenealogyTree(Person root) {
+    public GenealogyTree(T root) {
         this.root = root;
     }
 
-    public List<Person> getChildrenOfPerson(String name) {
-        return findPersonByName(name).getChildren();
+    public List<T> getChildrenOfPerson(String name) {
+        return (List<T>) findPersonByName(name).getChildren();
     }
 
-    private Person findPersonByName(String name) {
+    private T findPersonByName(String name) {
         return findPersonByNameHelper(root, name);
     }
 
-    private Person findPersonByNameHelper(Person current, String name) {
-        if (current.getName().equals(name)) {
-            return current;
+    private T findPersonByNameHelper(Person child2, String name) {
+        if (child2.getName().equals(name)) {
+            return (T) child2;
         }
 
-        for (Person child : current.getChildren()) {
-            Person result = findPersonByNameHelper(child, name);
+        for (Person child : child2.getChildren()) {
+            T result = findPersonByNameHelper(child, name);
             if (result != null) {
                 return result;
             }
@@ -35,22 +36,22 @@ class GenealogyTree implements Iterable<Person> {
     }
 
     @Override
-    public Iterator<Person> iterator() {
-        return new GenealogyTreeIterator(root);
+    public Iterator<T> iterator() {
+        return new GenealogyTreeIterator<>(root);
     }
 
-    private class GenealogyTreeIterator implements Iterator<Person> {
-        private List<Person> people;
+    private class GenealogyTreeIterator<T extends Person> implements Iterator<T>, Serializable {
+        private List<T> people;
 
-        public GenealogyTreeIterator(Person root) {
+        public GenealogyTreeIterator(T root) {
             people = new ArrayList<>();
             traverse(root);
             people.sort(Comparator.comparing(Person::getName)); // Сортировка по имени
         }
 
-        private void traverse(Person person) {
-            people.add(person);
-            for (Person child : person.getChildren()) {
+        private void traverse(Person child2) {
+            people.add((T) child2);
+            for (Person child : child2.getChildren()) {
                 traverse(child);
             }
         }
@@ -61,7 +62,7 @@ class GenealogyTree implements Iterable<Person> {
         }
 
         @Override
-        public Person next() {
+        public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }

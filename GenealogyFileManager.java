@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.List;
 
 public class GenealogyFileManager {
     private String filePath;
@@ -8,7 +7,7 @@ public class GenealogyFileManager {
         this.filePath = filePath;
     }
 
-    public void saveGenealogyTree(GenealogyTree tree) {
+    public <T extends Person> void saveGenealogyTree(GenealogyTree<T> tree) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
             outputStream.writeObject(tree);
         } catch (IOException e) {
@@ -16,9 +15,9 @@ public class GenealogyFileManager {
         }
     }
 
-    public GenealogyTree loadGenealogyTree() {
+    public <T extends Person> GenealogyTree<T> loadGenealogyTree() {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
-            return (GenealogyTree) inputStream.readObject();
+            return (GenealogyTree<T>) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Ошибка при загрузке генеалогического дерева: " + e.getMessage());
             return null;
