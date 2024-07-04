@@ -16,7 +16,7 @@ public class GenealogyTree<T extends Person> implements Iterable<T>, Serializabl
         return (List<T>) findPersonByName(name).getChildren();
     }
 
-    private T findPersonByName(String name) {
+    T findPersonByName(String name) {
         return findPersonByNameHelper(root, name);
     }
 
@@ -68,5 +68,10 @@ public class GenealogyTree<T extends Person> implements Iterable<T>, Serializabl
             }
             return people.remove(0);
         }
+    }
+
+    public void addPerson(T person) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addPerson'");
     }
 }
