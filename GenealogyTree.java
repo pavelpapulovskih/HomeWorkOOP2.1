@@ -75,3 +75,24 @@ public class GenealogyTree<T extends Person> implements Iterable<T>, Serializabl
         throw new UnsupportedOperationException("Unimplemented method 'addPerson'");
     }
 }
+// Принцип единственной ответственности (Single Responsibility Principle, SRP):
+// Класс GenealogyTree отвечает за хранение и управление генеалогическим деревом, что является его единственной ответственностью.
+// Класс GenealogyFileManager отвечает за сохранение и загрузку генеалогического дерева, что также является его единственной ответственностью.
+
+// Принцип открытости/закрытости (Open/Closed Principle, OCP):
+// Классы GenealogyTree и GenealogyFileManager закрыты для модификации, но открыты для расширения. 
+// Использование обобщённого типа T extends Person в GenealogyTree и GenealogyFileManager позволяет работать с различными типами Person, не изменяя основной код.
+
+
+// Принцип подстановки Лисков (Liskov Substitution Principle, LSP):
+// Класс GenealogyTreeIterator реализует интерфейс Iterator<T>, что позволяет использовать его везде, где требуется итератор.
+// Использование обобщённого типа T extends Person в GenealogyTree и GenealogyFileManager гарантирует, что любой тип, наследующий от Person, может быть использован в качестве T.
+
+
+// Принцип разделения интерфейсов (Interface Segregation Principle, ISP):
+// В коде есть интерфейсы GenealogyModel,GenealogyPresenter,GenealogyView
+
+
+// Принцип инверсии зависимостей (Dependency Inversion Principle, DIP):
+// Класс GenealogyFileManager зависит от абстракции GenealogyTree, а не от конкретной реализации. Это соответствует принципу DIP.
+// Использование обобщённого типа T extends Person в GenealogyTree и GenealogyFileManager также способствует инверсии зависимостей.
