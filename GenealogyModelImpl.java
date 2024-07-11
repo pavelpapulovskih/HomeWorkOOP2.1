@@ -29,4 +29,5 @@ public class GenealogyModelImpl<T extends Person> implements GenealogyModel<T> {
         GenealogyFileManager<T> fileManager = new GenealogyFileManager<>(filePath);
         return fileManager.loadGenealogyTree();
     }
+    
 }

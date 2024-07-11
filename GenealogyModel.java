@@ -6,4 +6,5 @@ public interface GenealogyModel<T extends Person> {
     void addPerson(T person);
     void saveToDisk(String filePath);
     GenealogyTree<T> loadFromDisk(String filePath);
+    
 }

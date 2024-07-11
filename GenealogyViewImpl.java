@@ -21,4 +21,26 @@ public class GenealogyViewImpl implements GenealogyView {
     public void showError(String errorMessage) {
         System.out.println("Error: " + errorMessage);
     }
+    @Override
+    public Person getPersonByName(String name) {
+        return null;
+        // Логика получения информации о человеке по имени
+    }
+
+    @Override
+    public List<? extends Person> getPeopleByGender(String gender) {
+        return null;
+        // Логика получения информации о людях по полу
+    }
+
+    @Override
+    public void addNewPerson(Person person) {
+        // Логика добавления новой информации о человеке
+    }
+
+    @Override
+    public void displaySuccessMessage(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'displaySuccessMessage'");
+    }
 }
