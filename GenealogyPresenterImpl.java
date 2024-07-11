@@ -21,19 +21,7 @@ public class GenealogyPresenterImpl<T extends Person> implements GenealogyPresen
         view.displayPersonList(children);
     }
 
-    @Override
-    public void sortPersonsByName() {
-        List<T> people = model.getChildrenOfPerson(null);
-        people.sort(Comparator.comparing(Person::getName));
-        view.displayPersonList(people);
-    }
-
-    @Override
-    public void sortPersonsByDateOfBirth() {
-        List<T> people = model.getChildrenOfPerson(null);
-        people.sort(Comparator.comparing(Person::getDateOfBirth));
-        view.displayPersonList(people);
-    }
+  
 
     @Override
 public void loadGenealogyTree(String filePath) {

@@ -4,6 +4,5 @@ public interface GenealogyPresenter<T extends Person> {
     void findPersonByName(String name);
     void getChildrenOfPerson(String name);
     void addPerson(T person);
-    void sortPersonsByName();
-    void sortPersonsByDateOfBirth();
+ 
 }

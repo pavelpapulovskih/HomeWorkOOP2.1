@@ -17,8 +17,7 @@ public class Main {
         presenter.addPerson(peter);
 
         presenter.getChildrenOfPerson("Джон");
-        presenter.sortPersonsByName();
-        presenter.sortPersonsByDateOfBirth();
+      
 
         presenter.saveGenealogyTree(FILE_PATH);
         presenter.loadGenealogyTree(FILE_PATH);
